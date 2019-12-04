@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 
+import api from '../../services/api';
+
 import { TasksWrapper, TaskTitle } from './style';
 import TasksList from './List';
 
-const Tasks = () => {
+const Tasks = (props) => {
     let [tasks, setTasks] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:3001/tasks`, {
+        fetch(`${api}/tasks`, {
             method: "GET",
         })
         .then(response => {
@@ -16,14 +18,17 @@ const Tasks = () => {
             })
         })
     });
-
     return (
         <TasksWrapper>
-            <TaskTitle>
+            <TaskTitle to="/tasks">
                 Afazeres
             </TaskTitle>
-            <TasksList tasks={tasks} type={false} />
-            <TasksList tasks={tasks} type={true} />
+            <TasksList tasks={tasks} type={false} all={props.all} />
+            {
+                props.all ?
+                (<TasksList tasks={tasks} type={true} all={props.all} />) :
+                (<></>)
+            }
         </TasksWrapper>
     )
 }

@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { TimelineLite } from 'gsap/all'
 
+import api from '../../../services/api';
+
 import { 
     TasksList as Wrapper, 
     TaskLine,
@@ -14,7 +16,8 @@ import {
     TaskLabel,
     TaskLabelText,
     TaskInput,
-    TaskFormButton
+    TaskFormButton,
+    TaskLink
 } from '../style';
 
 import {
@@ -91,7 +94,7 @@ const TasksList = (props) => {
 
     const handleSumit = title => {
         if(title) {
-            fetch(`http://localhost:3001/tasks/`, {
+            fetch(`${api}/tasks/`, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -148,11 +151,11 @@ const TasksList = (props) => {
 
     if(modalResponse.state) {
         if(modalResponse.action === "delete") {
-            fetch(`http://localhost:3001/tasks/${modalResponse.task.id}`, {
+            fetch(`${api}/tasks/${modalResponse.task.id}`, {
                 method: 'DELETE'
             });
         } else if (modalResponse.action === "done") {
-            fetch(`http://localhost:3001/tasks/${modalResponse.task.id}`, {
+            fetch(`${api}/tasks/${modalResponse.task.id}`, {
                 method: 'PUT',
                 headers: {
                     'Accept': 'application/json',
@@ -164,7 +167,7 @@ const TasksList = (props) => {
             });
         } else if(modalResponse.action === "deleteAll") {
             props.tasks.filter(task => task.done === props.type).forEach(val => {
-                fetch(`http://localhost:3001/tasks/${val.id}`, {
+                fetch(`${api}/tasks/${val.id}`, {
                     method: 'DELETE'
                 });
             })
@@ -175,7 +178,6 @@ const TasksList = (props) => {
         alt.state = false;
         setModalResponse(alt);
     }
-    
     return (
         <>
             <Wrapper>
@@ -212,6 +214,11 @@ const TasksList = (props) => {
                 ))}
             </Wrapper>
             <TaskButtonWrapper>
+                {
+                    props.all ?
+                    (<div></div>) :
+                    (<TaskLink to="/tasks">Ver Todos</TaskLink>)
+                }
                 <TaskButton
                     onClick={() => handleButton()}
                 >

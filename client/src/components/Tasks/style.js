@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 import BoxIcon      from '../../assets/icons/box.svg';
 import TrashIcon    from '../../assets/icons/trash.svg';
@@ -13,7 +14,7 @@ export const TasksWrapper = styled.div`
     flex-flow: column;
 `
 
-export const TaskTitle = styled.span`
+export const TaskTitle = styled(Link)`
     font-size: 24px;
     font-weight: bold;
     color: var(--color-1);
@@ -84,15 +85,16 @@ export const TaskDelete = styled.div`
 
 export const TaskButtonWrapper = styled.div`
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+    align-items: center;
 
+    margin-bottom: 2vh;
     width: 100%;
 `
 
 export const TaskButton = styled.button`
     height: 30px;
     width: 40%;
-    margin-bottom: 2vh;
 
     border-radius: 5px;
     border: 1px solid var(--color-1);
@@ -139,4 +141,11 @@ export const TaskInput = styled.input`
 
 export const TaskFormButton = styled(TaskButton)`
     width: 50%;
+`
+
+export const TaskLink = styled(Link)`
+    height: 100%;
+
+    font-size: 14px;
+    color: var(--color-1);
 `

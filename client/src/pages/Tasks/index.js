@@ -2,12 +2,12 @@ import React from 'react';
 
 import Tasks from '../../components/Tasks';
 
-const Home = () => {
+const TasksPage = () => {
     return (
         <>
-            <Tasks all={false} />
+            <Tasks all={true} />
         </>
     )
 }
 
-export default Home;
+export default TasksPage;
