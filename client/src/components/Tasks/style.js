@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 import BoxIcon      from '../../assets/icons/box.svg';
-import CheckIcon    from '../../assets/icons/check.svg';
 import TrashIcon    from '../../assets/icons/trash.svg';
 
 export const TasksWrapper = styled.div`
@@ -15,7 +14,8 @@ export const TasksWrapper = styled.div`
 `
 
 export const TaskTitle = styled.span`
-    font-size: 18px;
+    font-size: 24px;
+    font-weight: bold;
     color: var(--color-1);
 
     margin: 5px 0;
@@ -80,4 +80,63 @@ export const TaskDelete = styled.div`
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+`
+
+export const TaskButtonWrapper = styled.div`
+    display: flex;
+    justify-content: flex-end;
+
+    width: 100%;
+`
+
+export const TaskButton = styled.button`
+    height: 30px;
+    width: 40%;
+    margin-bottom: 2vh;
+
+    border-radius: 5px;
+    border: 1px solid var(--color-1);
+    background-color: var(--color-1);
+    color: #fff;
+    font-size: 12px;
+
+    outline: none;
+`
+
+export const TaskForm = styled.form`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+
+    width: 90%;
+`
+
+export const TaskLabel = styled.label`
+    display: flex;
+    flex-flow: column;
+
+    width: 100%;
+    margin: 2vh 0;
+`
+
+export const TaskLabelText = styled.span`
+    font-size: 14px;
+    color: var(--color-1);
+`
+
+export const TaskInput = styled.input`
+    width: 96%;
+    height: 25px;
+    padding: 0 2%;
+
+    border-radius: 5px;
+    border: 1px solid var(--color-1);
+    color: var(--color-1);
+
+    outline: none;
+`
+
+export const TaskFormButton = styled(TaskButton)`
+    width: 50%;
 `
